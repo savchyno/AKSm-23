@@ -1,0 +1,24 @@
+<h1>Список постів</h1>
+
+<div class="blog">
+<div class="one">
+<% @posts.each do |post| %>
+	<div class="block-one">
+		<div class="title"><%= post.name %></div>
+		<div class="text"><%= post.text %></div>
+		<div class="menu">
+			<span class="btn grey"><%= link_to 'Показати', post %></span>
+			<span class="btn blue"><%= link_to 'Редагувати', edit_post_path(post) %></span>
+			<span class="btn red"><%= form_with model: post, method: :delete, 
+			remote: true, data: { confirm: 'Ви впевнені?' }, class: 'delete' do |form| %>
+				<%= form.submit 'Видалити' %>
+			  <% end %></span>
+		</div>
+</div>
+	
+	
+<% end %>
+</div>
+</div>
+<div class="block-btn"><%= link_to 'Додати новий пост', new_post_path, class: "btn cr" %></div>
+
